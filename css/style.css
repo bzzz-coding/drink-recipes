@@ -10,15 +10,38 @@
 /******************************************
 /* LAYOUT
 /*******************************************/
-img{
-  display: block;
-  margin-left: 0;
+
+h2 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
 }
 
+h3, p {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+img {
+  float: right;
+  width: 30%;
+  margin-left: 5%;
+  margin-right: 10%;
+  border-radius: 20px;
+}
+
+
+
+ 
 
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
 li {
   list-style-type: none;
+}
+
+p {
+  font-weight: 400;
+  font-size: medium;
 }

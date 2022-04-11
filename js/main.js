@@ -18,15 +18,27 @@ function getDrink() {
 
             document.querySelector('img').src = `${data.drinks[0].strDrinkThumb}/preview`;
             document.querySelector('h2').textContent = data.drinks[0].strDrink;
+            document.querySelector('h3.ingredients').textContent = 'Ingredients';
+            document.querySelector('h3.instructions').textContent = 'Instructions';
+
+            // if there are li elements, remove them first
+            function removeAllChildNodes(parent) {
+                while (parent.firstChild) {
+                    parent.removeChild(parent.firstChild);
+                }
+            }
+            const ingreList = document.querySelector('ul.ingredients');
+            removeAllChildNodes(ingreList);
+
 
             for (let i = 0; i < ingredients.length; i++) {
                 let listItem = document.createElement('li');
                 listItem.classList.add('list-group-flush');
-                let measure = data.drinks[0][measures[i]] ? data.drinks[0][measures[i]] : ''; 
+                let measure = data.drinks[0][measures[i]] ? data.drinks[0][measures[i]] : '';
                 let node = document.createTextNode(`${measure} ${data.drinks[0][ingredients[i]]}`);
                 listItem.appendChild(node);
 
-                let element = document.querySelector('.ingredients');
+                let element = document.querySelector('ul.ingredients');
                 element.appendChild(listItem);
             }
 
