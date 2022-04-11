@@ -16,7 +16,7 @@ function getDrink() {
             // console.log(ingredients);
             let measures = Object.keys(data.drinks[0]).filter(k => k.startsWith('strMeasure') && data.drinks[0][k] !== null);
 
-            document.querySelector('img').src = data.drinks[0].strDrinkThumb;
+            document.querySelector('img').src = `${data.drinks[0].strDrinkThumb}/preview`;
             document.querySelector('h2').textContent = data.drinks[0].strDrink;
 
             for (let i = 0; i < ingredients.length; i++) {

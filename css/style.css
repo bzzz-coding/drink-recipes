@@ -12,11 +12,13 @@
 /*******************************************/
 img{
   display: block;
-  margin: 0 auto;
-  height: 200px;
+  margin-left: 0;
 }
 
 
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+li {
+  list-style-type: none;
+}
