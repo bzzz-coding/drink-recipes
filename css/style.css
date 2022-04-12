@@ -23,7 +23,7 @@ h3, p, form {
   margin-bottom: 2%;
 }
 
-img {
+.preview-img {
   float: right;
   width: 30%;
   margin-left: 5%;
@@ -31,7 +31,14 @@ img {
   border-radius: 20px;
 }
 
+.carousel {
+  width: 30%;
+  margin: auto;
+}
 
+.carousel img {
+  border-radius: 50% 50% 10px 10px;
+}
 
 
  

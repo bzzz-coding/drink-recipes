@@ -113,18 +113,28 @@ function getDrinkList() {
 
             for (let i = 0; i < data['drinks'].length; i++) {
                 let carouselItem = document.createElement('div');
-                if(i === 0) {
+                if (i === 0) {
                     carouselItem.classList.add('active');
                 }
                 carouselItem.classList.add('carousel-item');
                 let carouselImg = document.createElement('img');
                 carouselImg.classList.add('d-block', 'w-100');
-                carouselImg.src = `${data['drinks'][i].strDrinkThumb}/preview`;
-                console.log(carouselImg.src);
+                carouselImg.src = data['drinks'][i].strDrinkThumb;
+                // console.log(carouselImg.src);
+
+                let caption = document.createElement('div');
+                caption.classList.add('carousel-caption', 'd-none', 'd-md-block');
+                caption.innerHTML = `<h5>${data['drinks'][i].strDrink}</h5>`;
+
+                
+
                 carouselItem.appendChild(carouselImg);
+                carouselItem.appendChild(caption);
+
+
                 document.querySelector('.carousel-inner').appendChild(carouselItem);
             }
-            
+
 
         })
         .catch(err => console.log(`error ${err}`))
