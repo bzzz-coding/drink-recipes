@@ -2,9 +2,11 @@
 // let cocktail = document.querySelector('input').value.toLowerCase();
 // let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}`
 
+// Search cocktail recipe by name
 let getCt = document.querySelector('.get-ct');
 getCt.addEventListener('click', getDrink);
 
+// Function that resets pre-existing content
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
@@ -26,14 +28,13 @@ function getRecipe(drinkName) {
             document.querySelector('h3.ingredients').textContent = 'Ingredients';
             document.querySelector('h3.instructions').textContent = 'Instructions';
 
-            // if there are li elements, remove them first
-            const ingreList = document.querySelector('ul.ingredients');
-            removeAllChildNodes(ingreList);
-
+            
 
             for (let i = 0; i < ingredients.length; i++) {
                 let listItem = document.createElement('li');
                 listItem.classList.add('list-group-flush');
+
+                // combine measurements(if any) with ingredients
                 let measure = data.drinks[0][measures[i]] ? data.drinks[0][measures[i]] : '';
                 let node = document.createTextNode(`${measure} ${data.drinks[0][ingredients[i]]}`);
                 listItem.appendChild(node);
@@ -50,51 +51,31 @@ function getRecipe(drinkName) {
         .catch(err => console.log(`error ${err}`))
 }
 
+function resetContent() {
+    // remove preexisting content
+    const drinkName = document.querySelector('h2');
+    drinkName.innerHTML = '';
+    document.querySelector('img').src = '#';
+
+    const ingredients = document.querySelector('.ingredients');
+    ingredients.innerHTML = '';
+    const ingreList = document.querySelector('ul.ingredients');
+    ingreList.innerHTML = '';
+    const instructions = document.querySelector('.instructions');
+    instructions.innerHTML = '';
+    const carouselSlides = document.querySelector('.carousel-inner');
+    if(carouselSlides.hasChildNodes()) {
+        removeAllChildNodes(carouselSlides);
+    }
+}
+
 function getDrink() {
+    resetContent();
     let cocktailName = document.querySelector('.drink-name').value.toLowerCase();
     getRecipe(cocktailName);
-    // let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`
-    // fetch(url)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(Object.keys(data.drinks[0]));
-    //         let ingredients = Object.keys(data.drinks[0]).filter(k => (k.startsWith('strIngredient')) && data.drinks[0][k] !== null);
-    //         // console.log(ingredients);
-    //         let measures = Object.keys(data.drinks[0]).filter(k => k.startsWith('strMeasure') && data.drinks[0][k] !== null);
-
-    //         document.querySelector('img').src = `${data.drinks[0].strDrinkThumb}/preview`;
-    //         document.querySelector('h2').textContent = data.drinks[0].strDrink;
-    //         document.querySelector('h3.ingredients').textContent = 'Ingredients';
-    //         document.querySelector('h3.instructions').textContent = 'Instructions';
-
-    //         // if there are li elements, remove them first
-    //         function removeAllChildNodes(parent) {
-    //             while (parent.firstChild) {
-    //                 parent.removeChild(parent.firstChild);
-    //             }
-    //         }
-    //         const ingreList = document.querySelector('ul.ingredients');
-    //         removeAllChildNodes(ingreList);
-
-
-    //         for (let i = 0; i < ingredients.length; i++) {
-    //             let listItem = document.createElement('li');
-    //             listItem.classList.add('list-group-flush');
-    //             let measure = data.drinks[0][measures[i]] ? data.drinks[0][measures[i]] : '';
-    //             let node = document.createTextNode(`${measure} ${data.drinks[0][ingredients[i]]}`);
-    //             listItem.appendChild(node);
-
-    //             let element = document.querySelector('ul.ingredients');
-    //             element.appendChild(listItem);
-    //         }
-
-    //         let para = document.createElement('p');
-    //         para.textContent = data.drinks[0].strInstructions;
-    //         let element = document.querySelector('.instructions');
-    //         element.appendChild(para);
-    //     })
-    //     .catch(err => console.log(`error ${err}`))
 }
+
+// Search drink by ingredient, display a carousel:
 
 let getDrinks = document.querySelector('.get-drinks');
 getDrinks.addEventListener('click', getDrinkList);
@@ -108,8 +89,7 @@ function getDrinkList() {
             // // data['drinks'] is an array of objects
             console.log(data['drinks']);
 
-            const recipe = document.querySelector('.drink-recipe');
-            removeAllChildNodes(recipe);
+            resetContent();
 
             for (let i = 0; i < data['drinks'].length; i++) {
                 let carouselItem = document.createElement('div');
@@ -126,8 +106,9 @@ function getDrinkList() {
                 caption.classList.add('carousel-caption', 'd-none', 'd-md-block');
                 caption.innerHTML = `<h5>${data['drinks'][i].strDrink}</h5>`;
 
-                
+                // caption.addEventListener('click', getRecipe(data['drinks'][i].strDrink));
 
+                
                 carouselItem.appendChild(carouselImg);
                 carouselItem.appendChild(caption);
 
@@ -141,7 +122,7 @@ function getDrinkList() {
 }
 
 $('.carousel').carousel({
-    interval: 2000
+    interval: 3000
 })
 
 
