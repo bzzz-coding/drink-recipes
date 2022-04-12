@@ -11,13 +11,14 @@
 /* LAYOUT
 /*******************************************/
 
-h2 {
+
+h1, h2 {
   margin-top: 5%;
   margin-bottom: 5%;
   text-align: center;
 }
 
-h3, p {
+h3, p, form {
   margin-top: 2%;
   margin-bottom: 2%;
 }
@@ -29,6 +30,7 @@ img {
   margin-right: 10%;
   border-radius: 20px;
 }
+
 
 
 
@@ -44,4 +46,8 @@ li {
 p {
   font-weight: 400;
   font-size: medium;
+}
+
+.hidden {
+  display: none;
 }
