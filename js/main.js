@@ -5,6 +5,12 @@
 let getCt = document.querySelector('.get-ct');
 getCt.addEventListener('click', getDrink);
 
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 function getRecipe(drinkName) {
     let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`
     fetch(url)
@@ -21,11 +27,6 @@ function getRecipe(drinkName) {
             document.querySelector('h3.instructions').textContent = 'Instructions';
 
             // if there are li elements, remove them first
-            function removeAllChildNodes(parent) {
-                while (parent.firstChild) {
-                    parent.removeChild(parent.firstChild);
-                }
-            }
             const ingreList = document.querySelector('ul.ingredients');
             removeAllChildNodes(ingreList);
 
@@ -107,6 +108,9 @@ function getDrinkList() {
             // // data['drinks'] is an array of objects
             console.log(data['drinks']);
 
+            const recipe = document.querySelector('.drink-recipe');
+            removeAllChildNodes(recipe);
+
             for (let i = 0; i < data['drinks'].length; i++) {
                 let carouselItem = document.createElement('div');
                 if(i === 0) {
@@ -115,18 +119,19 @@ function getDrinkList() {
                 carouselItem.classList.add('carousel-item');
                 let carouselImg = document.createElement('img');
                 carouselImg.classList.add('d-block', 'w-100');
-                carouselImg.src = data['drinks'][i].strDrinkThumb;
+                carouselImg.src = `${data['drinks'][i].strDrinkThumb}/preview`;
                 console.log(carouselImg.src);
                 carouselItem.appendChild(carouselImg);
                 document.querySelector('.carousel-inner').appendChild(carouselItem);
             }
-            $('.carousel').carousel({
-                interval: 1000
-            })
+            
 
         })
         .catch(err => console.log(`error ${err}`))
 }
 
+$('.carousel').carousel({
+    interval: 2000
+})
 
 
