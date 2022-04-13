@@ -38,8 +38,22 @@ h3, p, form {
 }
 
 .carousel {
-  width: 30%;
+  width: 50%;
   margin: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .preview-img {
+    width: 80%;
+    margin-left: 5%;
+    margin-right: 10%;
+    border-radius: 20px;
+  }
+  
+  .carousel {
+    width: 80%;
+    margin: auto;
+  }
 }
 
 .carousel img {
