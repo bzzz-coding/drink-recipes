@@ -110,7 +110,7 @@ function getDrinkList() {
                 // console.log(carouselImg.src);
 
                 let caption = document.createElement('div');
-                caption.classList.add('carousel-caption', 'd-none', 'd-md-block');
+                caption.classList.add('carousel-caption');
                 caption.innerHTML = `<h5>${data['drinks'][i].strDrink}</h5>`;
 
                 carouselItem.appendChild(carouselImg);

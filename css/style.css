@@ -13,46 +13,47 @@
 
 
 h1, h2 {
-  margin-top: 5%;
+  font-size: 24px;
+  margin-top: 2%;
   margin-bottom: 5%;
   text-align: center;
 }
 
 h5 {
+  font-size: 16px;
   padding: 1% 2%;
   border-radius: 5px;
   background-color: rgba(141, 141, 170, 0.5);
 }
 
 h3, p, form {
+  font-size: 18px;
   margin-top: 2%;
   margin-bottom: 2%;
 }
 
+
 .preview-img {
   float: right;
-  width: 30%;
+  width: 50%;
   margin-left: 5%;
   margin-right: 10%;
   border-radius: 20px;
 }
 
 .carousel {
-  width: 50%;
+  width: 70%;
   margin: auto;
+  margin-bottom: 5%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 801px) {
   .preview-img {
-    width: 80%;
-    margin-left: 5%;
-    margin-right: 10%;
-    border-radius: 20px;
+    width: 30%;
   }
   
   .carousel {
-    width: 80%;
-    margin: auto;
+    width: 35%;
   }
 }
 
