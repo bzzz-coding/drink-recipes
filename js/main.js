@@ -7,14 +7,13 @@
 const searchRecipe = document.querySelector('.search-drink');
 searchRecipe.addEventListener('click', getDrink);
 
-// !!!!!! the code below doesn't work as intended...
 const inputDrinkName = document.querySelector('.drink-name');
-inputDrinkName.addEventListener('keyup', function(event) {
-    if (event.key === 'Enter' || event.keyCode === 13) { // keyCode depricated? 
-       event.preventDefault();
-       searchRecipe.click();
+inputDrinkName.addEventListener('keyup', function (event) {
+    event.preventDefault();
+    if (event.key === 'Enter' || event.keyCode === 13) { // keyCode depricated?
+        searchRecipe.click();
     }
- });
+});
 
 function getDrink() {
     resetContent();
@@ -95,6 +94,14 @@ function resetContent() {
 // add event listener to second button:
 let getDrinks = document.querySelector('.get-drinks');
 getDrinks.addEventListener('click', getDrinkList);
+
+const inputIngredientName = document.querySelector('.ingredient-name');
+inputIngredientName.addEventListener('keyup', function (event) {
+    event.preventDefault();
+    if (event.key === 'Enter' || event.keyCode === 13) { // keyCode depricated?
+        getDrinks.click();
+    }
+});
 
 function getDrinkList() {
     let ingredentName = document.querySelector('.ingredient-name').value.toLowerCase();
