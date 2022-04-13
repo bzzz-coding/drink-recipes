@@ -2,17 +2,26 @@
 // let cocktail = document.querySelector('input').value.toLowerCase();
 // let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}`
 
-// Search cocktail recipe by name
+// ======= Search recipe by entering name of drink ===========
+// add event listener to first button
 const searchRecipe = document.querySelector('.search-drink');
 searchRecipe.addEventListener('click', getDrink);
 
-
-// Function that resets pre-existing content
-function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
+// !!!!!! the code below doesn't work as intended...
+const inputDrinkName = document.querySelector('.drink-name');
+inputDrinkName.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter' || event.keyCode === 13) { // keyCode depricated? 
+       event.preventDefault();
+       searchRecipe.click();
     }
+ });
+
+function getDrink() {
+    resetContent();
+    let cocktailName = document.querySelector('.drink-name').value.toLowerCase();
+    getRecipe(cocktailName);
 }
+
 
 function getRecipe(drinkName) {
     let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`
@@ -52,6 +61,13 @@ function getRecipe(drinkName) {
         .catch(err => console.log(`error ${err}`))
 }
 
+// Function that resets pre-existing content
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 function resetContent() {
     // remove preexisting content
     const drinkName = document.querySelector('h2');
@@ -74,13 +90,9 @@ function resetContent() {
     }
 }
 
-function getDrink() {
-    resetContent();
-    let cocktailName = document.querySelector('.drink-name').value.toLowerCase();
-    getRecipe(cocktailName);
-}
 
-// Search drink by ingredient, display a carousel:
+// ===== Search drink by ingredient, display a carousel =====
+// add event listener to second button:
 let getDrinks = document.querySelector('.get-drinks');
 getDrinks.addEventListener('click', getDrinkList);
 
