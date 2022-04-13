@@ -17,18 +17,6 @@
 </head>
 
 <body>
-	<!-- <section class="container">
-		<h1>Fancy a cocktail?</h1>
-
-		<input type="text" name="" value="" placeholder="Name of drink">
-		<button class="btn get-ct" type="button" name="button">Get Cocktail</button>
-
-		<h2></h2>
-		<img src="" alt="">
-		<h3>Ingredients</h3>
-		<ul class="ingredients list-group"></ul>
-		<h3 class="instructions">Instructions</h3>
-	</section> -->
 	<h1 class="mb-3">Drink Recipes</h1>
 
 	<section class="container">
@@ -38,7 +26,7 @@
 				<input type="text" class="form-control drink-name" id="recipe"
 					placeholder="Enter the name or a keyword of the drink">
 			</div>
-			<button type="button" class="btn btn-primary get-ct" name="button">Get Recipe</button>
+			<button type="button" class="btn btn-primary search-drink" name="button">Get Recipe</button>
 		</form>
 
 		<form>
@@ -51,15 +39,6 @@
 			</div>
 		</form>
 
-		<!-- <form>
-			<div class="form-group">
-				<label for="exampleFormControlSelect1">Check out the drinks we have</label>
-				<select class="form-control">
-					<option value="">Choose an option</option>
-				</select>
-			  </div>
-		</form> -->
-
 		<div class="drink-recipe">
 			<h2 class="drink-name"></h2>
 			<img class="preview-img" src="" alt="">
@@ -68,7 +47,7 @@
 			<h3 class="instructions"></h3>
 		</div>
 
-		<div id="drinkCarousel" class="carousel slide" data-ride="carousel">
+		<div id="drinkCarousel" class="carousel slide hidden" data-ride="carousel">
 			<div class="carousel-inner">
 			</div>
 			<a class="carousel-control-prev" href="#drinkCarousel" role="button" data-slide="prev">

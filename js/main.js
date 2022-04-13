@@ -3,8 +3,8 @@
 // let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}`
 
 // Search cocktail recipe by name
-let getCt = document.querySelector('.get-ct');
-getCt.addEventListener('click', getDrink);
+const getDrinkName = document.querySelector('.search-drink');
+getDrinkName.addEventListener('click', getDrink);
 
 // Function that resets pre-existing content
 function removeAllChildNodes(parent) {
@@ -28,7 +28,7 @@ function getRecipe(drinkName) {
             document.querySelector('h3.ingredients').textContent = 'Ingredients';
             document.querySelector('h3.instructions').textContent = 'Instructions';
 
-            
+
 
             for (let i = 0; i < ingredients.length; i++) {
                 let listItem = document.createElement('li');
@@ -67,6 +67,10 @@ function resetContent() {
     if(carouselSlides.hasChildNodes()) {
         removeAllChildNodes(carouselSlides);
     }
+    const drinkCarousel = document.querySelector('#drinkCarousel');
+    if (!drinkCarousel.classList.contains('hidden')) {
+        drinkCarousel.classList.add('hidden');
+    }
 }
 
 function getDrink() {
@@ -76,7 +80,6 @@ function getDrink() {
 }
 
 // Search drink by ingredient, display a carousel:
-
 let getDrinks = document.querySelector('.get-drinks');
 getDrinks.addEventListener('click', getDrinkList);
 
@@ -93,6 +96,9 @@ function getDrinkList() {
 
             for (let i = 0; i < data['drinks'].length; i++) {
                 let carouselItem = document.createElement('div');
+                const drinkCarousel = document.querySelector('#drinkCarousel');
+                drinkCarousel.classList.remove('hidden');
+                
                 if (i === 0) {
                     carouselItem.classList.add('active');
                 }
@@ -106,17 +112,11 @@ function getDrinkList() {
                 caption.classList.add('carousel-caption', 'd-none', 'd-md-block');
                 caption.innerHTML = `<h5>${data['drinks'][i].strDrink}</h5>`;
 
-                // caption.addEventListener('click', getRecipe(data['drinks'][i].strDrink));
-
-                
                 carouselItem.appendChild(carouselImg);
                 carouselItem.appendChild(caption);
 
-
                 document.querySelector('.carousel-inner').appendChild(carouselItem);
             }
-
-
         })
         .catch(err => console.log(`error ${err}`))
 }
@@ -124,5 +124,6 @@ function getDrinkList() {
 $('.carousel').carousel({
     interval: 3000
 })
+
 
 
