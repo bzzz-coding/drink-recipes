@@ -3,8 +3,9 @@
 // let url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}`
 
 // Search cocktail recipe by name
-const getDrinkName = document.querySelector('.search-drink');
-getDrinkName.addEventListener('click', getDrink);
+const searchRecipe = document.querySelector('.search-drink');
+searchRecipe.addEventListener('click', getDrink);
+
 
 // Function that resets pre-existing content
 function removeAllChildNodes(parent) {
@@ -64,7 +65,7 @@ function resetContent() {
     const instructions = document.querySelector('.instructions');
     instructions.innerHTML = '';
     const carouselSlides = document.querySelector('.carousel-inner');
-    if(carouselSlides.hasChildNodes()) {
+    if (carouselSlides.hasChildNodes()) {
         removeAllChildNodes(carouselSlides);
     }
     const drinkCarousel = document.querySelector('#drinkCarousel');
@@ -90,7 +91,7 @@ function getDrinkList() {
         .then(res => res.json())
         .then(data => {
             // // data['drinks'] is an array of objects
-            console.log(data['drinks']);
+            // console.log(data['drinks']);
 
             resetContent();
 
@@ -98,7 +99,7 @@ function getDrinkList() {
                 let carouselItem = document.createElement('div');
                 const drinkCarousel = document.querySelector('#drinkCarousel');
                 drinkCarousel.classList.remove('hidden');
-                
+
                 if (i === 0) {
                     carouselItem.classList.add('active');
                 }
